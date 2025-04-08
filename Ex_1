@@ -1,0 +1,480 @@
+divya@DESKTOP-2CGB6I5:~$ sudo -i
+[sudo] password for divya:
+root@DESKTOP-2CGB6I5:~# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.41-0ubuntu0.24.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use divi
+ERROR 1049 (42000): Unknown database 'divi'
+mysql> use users
+ERROR 1049 (42000): Unknown database 'users'
+mysql> use user
+ERROR 1049 (42000): Unknown database 'user'
+mysql> use mango
+ERROR 1049 (42000): Unknown database 'mango'
+mysql> use mongo
+ERROR 1049 (42000): Unknown database 'mongo'
+mysql> use table
+ERROR 1049 (42000): Unknown database 'table'
+mysql> use database
+ERROR 1049 (42000): Unknown database 'database'
+mysql> show database
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| hello              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.02 sec)
+
+mysql> use hello;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> use hello
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_hello |
++-----------------+
+| users           |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> select * from users;
++----+------+------+
+| id | name | city |
++----+------+------+
+| 64 | Divi | tvm  |
++----+------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into users values(47,"Cherry","thirchy");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into users values(190,"Ren","Dharmapuri");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into users values(40,"Bhu","Kallakurchi");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into users(id,name) values(19,"Anitha");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> desc users;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| city  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users;
++-----+--------+-------------+
+| id  | name   | city        |
++-----+--------+-------------+
+|  19 | Anitha | NULL        |
+|  40 | Bhu    | Kallakurchi |
+|  47 | Cherry | thirchy     |
+|  64 | Divi   | tvm         |
+| 190 | Ren    | Dharmapuri  |
++-----+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from users order by id;
++-----+--------+-------------+
+| id  | name   | city        |
++-----+--------+-------------+
+|  19 | Anitha | NULL        |
+|  40 | Bhu    | Kallakurchi |
+|  47 | Cherry | thirchy     |
+|  64 | Divi   | tvm         |
+| 190 | Ren    | Dharmapuri  |
++-----+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from users order by id desc;
++-----+--------+-------------+
+| id  | name   | city        |
++-----+--------+-------------+
+| 190 | Ren    | Dharmapuri  |
+|  64 | Divi   | tvm         |
+|  47 | Cherry | thirchy     |
+|  40 | Bhu    | Kallakurchi |
+|  19 | Anitha | NULL        |
++-----+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from users order by name desc;
++-----+--------+-------------+
+| id  | name   | city        |
++-----+--------+-------------+
+| 190 | Ren    | Dharmapuri  |
+|  64 | Divi   | tvm         |
+|  47 | Cherry | thirchy     |
+|  40 | Bhu    | Kallakurchi |
+|  19 | Anitha | NULL        |
++-----+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from users order by city desc;
++-----+--------+-------------+
+| id  | name   | city        |
++-----+--------+-------------+
+|  64 | Divi   | tvm         |
+|  47 | Cherry | thirchy     |
+|  40 | Bhu    | Kallakurchi |
+| 190 | Ren    | Dharmapuri  |
+|  19 | Anitha | NULL        |
++-----+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from users order by city;
++-----+--------+-------------+
+| id  | name   | city        |
++-----+--------+-------------+
+|  19 | Anitha | NULL        |
+| 190 | Ren    | Dharmapuri  |
+|  40 | Bhu    | Kallakurchi |
+|  47 | Cherry | thirchy     |
+|  64 | Divi   | tvm         |
++-----+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> desc users;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| city  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter users city varchar(25);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'users city varchar(25)' at line 1
+mysql> alter users modify city varchar(25);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'users modify city varchar(25)' at line 1
+mysql> alter table users modify city varchar(25);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc users;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| city  | varchar(25) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table users drop primary;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table users drop primary key;
+Query OK, 5 rows affected (0.15 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc users;~
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| city  | varchar(25) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '~' at line 1
+mysql> alter table users add primary key(id);
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc users;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| city  | varchar(25) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select *from users;
++-----+--------+-------------+
+| id  | name   | city        |
++-----+--------+-------------+
+|  19 | Anitha | NULL        |
+|  40 | Bhu    | Kallakurchi |
+|  47 | Cherry | thirchy     |
+|  64 | Divi   | tvm         |
+| 190 | Ren    | Dharmapuri  |
++-----+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table users add dept varchar(5);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from users;
++-----+--------+-------------+------+
+| id  | name   | city        | dept |
++-----+--------+-------------+------+
+|  19 | Anitha | NULL        | NULL |
+|  40 | Bhu    | Kallakurchi | NULL |
+|  47 | Cherry | thirchy     | NULL |
+|  64 | Divi   | tvm         | NULL |
+| 190 | Ren    | Dharmapuri  | NULL |
++-----+--------+-------------+------+
+5 rows in set (0.01 sec)
+
+mysql> desc users;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| city  | varchar(25) | YES  |     | NULL    |       |
+| dept  | varchar(5)  | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> alter table users set dept="cse";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set dept="cse"' at line 1
+mysql> alter table users modify dept="cse";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '="cse"' at line 1
+mysql> alter table users modify dept default "cse';
+    "> ;
+    "> ";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'default "cse';
+;
+"' at line 1
+mysql> alter table users modify dept default "cse";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'default "cse"' at line 1
+mysql> alter table users modify dept varchar(5) default "cse";
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select name,dept from users;
++--------+------+
+| name   | dept |
++--------+------+
+| Anitha | NULL |
+| Bhu    | NULL |
+| Cherry | NULL |
+| Divi   | NULL |
+| Ren    | NULL |
++--------+------+
+5 rows in set (0.01 sec)
+
+mysql> desc users;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| city  | varchar(25) | YES  |     | NULL    |       |
+| dept  | varchar(5)  | YES  |     | cse     |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> SHOW COLUMNS FROM users LIKE 'status';
+Empty set (0.01 sec)
+
+mysql> SHOW COLUMNS FROM users LIKE null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'null' at line 1
+mysql> SHOW COLUMNS FROM users LIKE 'null";
+    '> ";
+    '> ';
+Empty set (0.00 sec)
+
+mysql> SHOW COLUMNS FROM users LIKE "null";
+Empty set (0.00 sec)
+
+mysql> update table users modify dept set "cse";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table users modify dept set "cse"' at line 1
+mysql> update table users dept set="cse";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table users dept set="cse"' at line 1
+mysql> update users dept set="cse";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '="cse"' at line 1
+mysql> update table users set dept="cse";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table users set dept="cse"' at line 1
+mysql> update users set dept="cse";
+Query OK, 5 rows affected (0.02 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select name,dept from users;
++--------+------+
+| name   | dept |
++--------+------+
+| Anitha | cse  |
+| Bhu    | cse  |
+| Cherry | cse  |
+| Divi   | cse  |
+| Ren    | cse  |
++--------+------+
+5 rows in set (0.00 sec)
+
+mysql> alter table users drop dept;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc users;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| city  | varchar(25) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select name,dept from users;
+ERROR 1054 (42S22): Unknown column 'dept' in 'field list'
+mysql> select * from users;
++-----+--------+-------------+
+| id  | name   | city        |
++-----+--------+-------------+
+|  19 | Anitha | NULL        |
+|  40 | Bhu    | Kallakurchi |
+|  47 | Cherry | thirchy     |
+|  64 | Divi   | tvm         |
+| 190 | Ren    | Dharmapuri  |
++-----+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table users modify id stud_id int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'stud_id int' at line 1
+mysql> alter table users change column id stud_id int;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from users;
++---------+--------+-------------+
+| stud_id | name   | city        |
++---------+--------+-------------+
+|      19 | Anitha | NULL        |
+|      40 | Bhu    | Kallakurchi |
+|      47 | Cherry | thirchy     |
+|      64 | Divi   | tvm         |
+|     190 | Ren    | Dharmapuri  |
++---------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> desc users;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| stud_id | int         | NO   | PRI | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| city    | varchar(25) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> alter table users add dept varchar(2);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update users set dept="cse";
+ERROR 1406 (22001): Data too long for column 'dept' at row 1
+mysql> update users set dept="cs";
+Query OK, 5 rows affected (0.01 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select *from users;
++---------+--------+-------------+------+
+| stud_id | name   | city        | dept |
++---------+--------+-------------+------+
+|      19 | Anitha | NULL        | cs   |
+|      40 | Bhu    | Kallakurchi | cs   |
+|      47 | Cherry | thirchy     | cs   |
+|      64 | Divi   | tvm         | cs   |
+|     190 | Ren    | Dharmapuri  | cs   |
++---------+--------+-------------+------+
+5 rows in set (0.00 sec)
+
+mysql> update users set dept='it' where name="Anitha" or name="cherry";
+Query OK, 2 rows affected (0.02 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select *from users;
++---------+--------+-------------+------+
+| stud_id | name   | city        | dept |
++---------+--------+-------------+------+
+|      19 | Anitha | NULL        | it   |
+|      40 | Bhu    | Kallakurchi | cs   |
+|      47 | Cherry | thirchy     | it   |
+|      64 | Divi   | tvm         | cs   |
+|     190 | Ren    | Dharmapuri  | cs   |
++---------+--------+-------------+------+
+5 rows in set (0.00 sec)
+
+mysql> update users set dept="cs";
+Query OK, 2 rows affected (0.02 sec)
+Rows matched: 5  Changed: 2  Warnings: 0
+
+mysql> select *from users;
++---------+--------+-------------+------+
+| stud_id | name   | city        | dept |
++---------+--------+-------------+------+
+|      19 | Anitha | NULL        | cs   |
+|      40 | Bhu    | Kallakurchi | cs   |
+|      47 | Cherry | thirchy     | cs   |
+|      64 | Divi   | tvm         | cs   |
+|     190 | Ren    | Dharmapuri  | cs   |
++---------+--------+-------------+------+
+5 rows in set (0.00 sec)
+
+mysql> update users set dept='it' where name="Anitha" or name="cherry" or neme="Ren";
+ERROR 1054 (42S22): Unknown column 'neme' in 'where clause'
+mysql> update users set dept='it' where name="Anitha" or name="cherry" or name="Ren";
+Query OK, 3 rows affected (0.02 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select *from users;
++---------+--------+-------------+------+
+| stud_id | name   | city        | dept |
++---------+--------+-------------+------+
+|      19 | Anitha | NULL        | it   |
+|      40 | Bhu    | Kallakurchi | cs   |
+|      47 | Cherry | thirchy     | it   |
+|      64 | Divi   | tvm         | cs   |
+|     190 | Ren    | Dharmapuri  | it   |
++---------+--------+-------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from users where city="%r%;
+    "> ";
+Empty set (0.00 sec)
+
+mysql> select * from users where city="%r%";
+Empty set (0.00 sec)
+
+mysql> select * from users where city like "%r%";
++---------+--------+-------------+------+
+| stud_id | name   | city        | dept |
++---------+--------+-------------+------+
+|      40 | Bhu    | Kallakurchi | cs   |
+|      47 | Cherry | thirchy     | it   |
+|     190 | Ren    | Dharmapuri  | it   |
++---------+--------+-------------+------+
+3 rows in set (0.02 sec)
